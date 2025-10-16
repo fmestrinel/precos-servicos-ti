@@ -1,181 +1,274 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tabela de Serviços de Informática</title>
-  <style>
-    * { box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
-    body {
-      background: #f5f5f5;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-    }
-    .container {
-      background: white;
-      padding: 20px;
-      margin-top: 30px;
-      border-radius: 12px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-      max-width: 420px;
-      width: 100%;
-    }
-    h2 { text-align: center; color: #333; }
-    .service {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .service input[type="checkbox"] {
-      margin-right: 10px;
-    }
-    .preco {
-      width: 100px;
-      text-align: right;
-      font-weight: bold;
-      color: #333;
-    }
-    .form {
-      margin-top: 20px;
-      border-top: 1px solid #ddd;
-      padding-top: 15px;
-    }
-    .form label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-    .form input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    button {
-      width: 100%;
-      background-color: #007bff;
-      border: none;
-      color: white;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover { background-color: #0056b3; }
-    .success {
-      color: green;
-      text-align: center;
-      margin-top: 10px;
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabela de Serviços de Informática</title>
+    <style>
+        * { box-sizing: border-box; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+        body {
+            background: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            max-width: 420px;
+            width: 100%;
+        }
+        h2 { text-align: left; color: #333; margin-bottom: 20px; }
+        .service {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .service label {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            cursor: pointer;
+        }
+        .service input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2); 
+        }
+        .service .preco {
+            font-weight: 600;
+            color: #007bff; 
+            text-align: right;
+            width: 80px;
+        }
+        /* Estilo para itens desabilitados */
+        .service input:disabled + span {
+            color: #aaa;
+            cursor: not-allowed;
+        }
+        .service input:disabled + span + .preco {
+            color: #aaa;
+            text-decoration: line-through;
+        }
+        .form {
+            margin-top: 25px;
+            border-top: 1px solid #ddd;
+            padding-top: 15px;
+        }
+        .form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .total-box {
+            border: 2px solid #007bff;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            background-color: #e9f5ff; 
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+        button {
+            width: 100%;
+            background-color: #25D366; 
+            border: none;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background-color: #128C7E; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Serviços de Informática</h2>
+    <div class="container">
+        <h2>Serviços de Informática</h2>
 
-    <div id="services">
-      <div class="service"><input type="checkbox" id="serv1" onchange="validarSelecao()"> <span>Limpeza</span><span class="preco" id="preco1"></span></div>
-      <div class="service"><input type="checkbox" id="serv2" onchange="validarSelecao()"> <span>Formatação</span><span class="preco" id="preco2"></span></div>
-      <div class="service"><input type="checkbox" id="serv3" onchange="validarSelecao()"> <span>Formatação com Backup de dados</span><span class="preco" id="preco3"></span></div>
-      <div class="service"><input type="checkbox" id="serv4" onchange="validarSelecao()"> <span>Formatação + Limpeza</span><span class="preco" id="preco4"></span></div>
-      <div class="service"><input type="checkbox" id="serv5" onchange="validarSelecao()"> <span>Formatação c/ Backup + Limpeza</span><span class="preco" id="preco5"></span></div>
-      <div class="service"><input type="checkbox" id="serv6" onchange="validarSelecao()"> <span>Instalação de Sistema Operacional</span><span class="preco" id="preco6"></span></div>
-      <div class="service"><input type="checkbox" id="serv7" onchange="validarSelecao()"> <span>Instalação de Programas</span><span class="preco" id="preco7"></span></div>
+        <div id="services">
+            <div class="service" data-preco="60.00"><label><input type="checkbox" id="serv0" onchange="validarSelecao()"> <span>Limpeza</span></label><span class="preco">R$ 60,00</span></div>
+            <div class="service" data-preco="80.00"><label><input type="checkbox" id="serv1" onchange="validarSelecao()"> <span>Formatação (Inclui Sistema Operacional)</span></label><span class="preco">R$ 80,00</span></div>
+            <div class="service" data-preco="120.00"><label><input type="checkbox" id="serv2" onchange="validarSelecao()"> <span>Formatação com Backup de dados</span></label><span class="preco">R$ 120,00</span></div>
+            <div class="service" data-preco="120.00"><label><input type="checkbox" id="serv3" onchange="validarSelecao()"> <span>Formatação + Limpeza</span></label><span class="preco">R$ 120,00</span></div>
+            <div class="service" data-preco="150.00"><label><input type="checkbox" id="serv4" onchange="validarSelecao()"> <span>Formatação c/ Backup + Limpeza</span></label><span class="preco">R$ 150,00</span></div>
+            <div class="service" data-preco="50.00"><label><input type="checkbox" id="serv5" onchange="validarSelecao()"> <span>Instalação de Programas</span></label><span class="preco">R$ 50,00</span></div>
+        </div>
+
+        <div class="form">
+            <div class="total-box">
+                <span>TOTAL DO SERVIÇO:</span>
+                <span id="valorTotal">R$ 0,00</span>
+            </div>
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" placeholder="Seu nome">
+
+            <label for="telefone">Telefone:</label>
+            <input type="text" id="telefone" placeholder="(DDD) 00000-0000">
+
+            <button onclick="enviar()">Solicitar Orçamento via WhatsApp</button>
+        </div>
     </div>
 
-    <div class="form">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" placeholder="Seu nome">
+    <script>
+        // Total de serviços é 6 (de 0 a 5)
+        const NUM_SERVICOS = 6;
+        const servicosElements = document.querySelectorAll('.service');
+        const checkboxes = Array.from({ length: NUM_SERVICOS }, (_, i) => document.getElementById(`serv${i}`));
+        
+        // Nomes dos serviços atualizados (6 itens)
+        const nomesServicos = [
+            "Limpeza",
+            "Formatação (Inclui Sistema Operacional)",
+            "Formatação com Backup de dados",
+            "Formatação + Limpeza",
+            "Formatação c/ Backup + Limpeza",
+            "Instalação de Programas"
+        ];
+        
+        // Função que combina validação e cálculo
+        function validarSelecao() {
+            let total = 0;
+            const selecionados = checkboxes.map((cb, i) => cb.checked ? i : null).filter(val => val !== null); // Índices (0-5) selecionados
 
-      <label for="telefone">Telefone:</label>
-      <input type="text" id="telefone" placeholder="(DDD) 00000-0000">
+            // 1. REATIVA TUDO ANTES DE APLICAR NOVAS REGRAS
+            checkboxes.forEach(cb => {
+                cb.disabled = false;
+            });
 
-      <button onclick="enviar()">Enviar Solicitação</button>
-      <p class="success" id="msgSucesso">✅ Solicitação enviada com sucesso!</p>
-    </div>
-  </div>
+            // 2. GERENCIAMENTO DE CONFLITOS (Regras ajustadas aos novos índices)
 
-  <script>
-    const precosPadrao = ["R$ 60,00", "R$ 80,00", "R$ 120,00", "R$ 120,00", "R$ 150,00", "R$ 80,00", "R$ 50,00"];
-    const servicos = [
-      "Limpeza",
-      "Formatação",
-      "Formatação com Backup de dados",
-      "Formatação + Limpeza",
-      "Formatação c/ Backup + Limpeza",
-      "Instalação de Sistema Operacional",
-      "Instalação de Programas"
-    ];
+            // Novo Regra 1: Se Limpeza (0) for selecionado, permite apenas 0, 1, 5
+            if (selecionados.includes(0)) {
+                // Índices permitidos: 0 (Limpeza), 1 (Formatação), 5 (Instalação de Programas)
+                const allowedIndices = [0, 1, 5]; 
+                checkboxes.forEach((cb, i) => {
+                    if (!allowedIndices.includes(i)) {
+                        cb.disabled = true;
+                        if (cb.checked) cb.checked = false; 
+                    }
+                });
+            }
 
-    for (let i = 1; i <= 7; i++) {
-      document.getElementById(`preco${i}`).textContent = precosPadrao[i - 1];
-    }
+            // Novo Regra 2: Se Formatação com Backup (2) for selecionado, permite apenas 2, 0, 5
+            if (selecionados.includes(2)) {
+                // Índices permitidos: 2 (Form. c/ Backup), 0 (Limpeza), 5 (Instalação de Programas)
+                const allowedIndices = [2, 0, 5]; 
+                checkboxes.forEach((cb, i) => {
+                    if (!allowedIndices.includes(i)) {
+                        cb.disabled = true;
+                        if (cb.checked) cb.checked = false;
+                    }
+                });
+            }
 
-    function validarSelecao() {
-      const checkboxes = Array.from({ length: 7 }, (_, i) => document.getElementById(`serv${i + 1}`));
-      const selecionados = checkboxes.map((cb, i) => cb.checked ? i + 1 : null).filter(Boolean);
+            // Novo Regra 3: Se Formatação + Limpeza (3) for selecionado, permite apenas 3, 5
+            if (selecionados.includes(3)) {
+                // Índices permitidos: 3 (Form. + Limpeza), 5 (Instalação de Programas)
+                const allowedIndices = [3, 5];
+                checkboxes.forEach((cb, i) => {
+                    if (!allowedIndices.includes(i)) {
+                        cb.disabled = true;
+                        if (cb.checked) cb.checked = false;
+                    }
+                });
+            }
 
-      checkboxes.forEach(cb => cb.disabled = false);
+            // Novo Regra 4: Se Formatação c/ Backup + Limpeza (4) for selecionado, permite apenas 4, 5
+            if (selecionados.includes(4)) {
+                // Índices permitidos: 4 (Form. c/ B + L), 5 (Instalação de Programas)
+                const allowedIndices = [4, 5];
+                checkboxes.forEach((cb, i) => {
+                    if (!allowedIndices.includes(i)) {
+                        cb.disabled = true;
+                        if (cb.checked) cb.checked = false;
+                    }
+                });
+            }
+            
+            // 3. CÁLCULO FINAL (Após as desativações)
+            servicosElements.forEach(serviceElement => {
+                const checkbox = serviceElement.querySelector('input[type="checkbox"]');
+                if (checkbox.checked && !checkbox.disabled) {
+                    const preco = parseFloat(serviceElement.getAttribute('data-preco'));
+                    total += preco;
+                }
+            });
 
-      if (selecionados.includes(1)) {
-        checkboxes.forEach((cb, i) => {
-          if (![1, 2, 6, 7].includes(i + 1)) cb.disabled = true;
-        });
-      } else if (selecionados.includes(3)) {
-        checkboxes.forEach((cb, i) => {
-          if (![3, 1, 7].includes(i + 1)) cb.disabled = true;
-        });
-      } else if (selecionados.includes(4)) {
-        checkboxes.forEach((cb, i) => {
-          if (![4, 7].includes(i + 1)) cb.disabled = true;
-        });
-      } else if (selecionados.includes(5)) {
-        checkboxes.forEach((cb, i) => {
-          if (![5, 7].includes(i + 1)) cb.disabled = true;
-        });
-      }
-    }
-
-    function enviar() {
-      const nome = document.getElementById('nome').value.trim();
-      const telefone = document.getElementById('telefone').value.trim();
-      if (!nome || !telefone) {
-        alert('Por favor, preencha todos os campos.');
-        return;
-      }
-
-      const selecionados = [];
-      let total = 0;
-
-      for (let i = 1; i <= 7; i++) {
-        const checkbox = document.getElementById(`serv${i}`);
-        if (checkbox.checked) {
-          selecionados.push(`${servicos[i - 1]} (${precosPadrao[i - 1]})`);
-          total += parseFloat(precosPadrao[i - 1].replace("R$ ", "").replace(",", "."));
+            // 4. EXIBIÇÃO DO TOTAL
+            const totalFormatado = total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            document.getElementById('valorTotal').textContent = totalFormatado;
         }
-      }
 
-      if (selecionados.length === 0) {
-        alert('Selecione pelo menos um serviço.');
-        return;
-      }
+        // Função que envia a solicitação
+        function enviar() {
+            const nome = document.getElementById('nome').value.trim();
+            const telefone = document.getElementById('telefone').value.trim();
+            
+            const selecionados = [];
+            let total = 0;
 
-      const resumo = selecionados.join(", ") + `. Totalizando R$ ${total.toFixed(2).replace(".", ",")}`;
-      const texto = `Olá! Me chamo ${nome}. Gostaria de solicitar os seguintes serviços: ${resumo}. Meu telefone é ${telefone}.`;
-      const numeroWhatsApp = '19993444657';
-      const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+            servicosElements.forEach((serviceElement, i) => {
+                const checkbox = serviceElement.querySelector('input[type="checkbox"]');
+                
+                if (checkbox.checked && !checkbox.disabled) {
+                    const preco = parseFloat(serviceElement.getAttribute('data-preco'));
+                    total += preco;
 
-      window.open(url, '_blank');
-      document.getElementById('msgSucesso').style.display = 'block';
-    }
-  </script>
+                    const nomeServico = nomesServicos[i];
+                    const precoFormatado = parseFloat(preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+                    
+                    selecionados.push(`- ${nomeServico} (R$ ${precoFormatado})`);
+                }
+            });
+
+            if (selecionados.length === 0) {
+                alert('Selecione pelo menos um serviço para solicitar o orçamento.');
+                return;
+            }
+            
+            if (!nome || !telefone) {
+                alert('Por favor, preencha seu Nome e Telefone.');
+                return;
+            }
+            
+            // Monta a mensagem final formatada
+            const totalFormatadoFinal = total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+            
+            const texto = `👋 Olá! Me chamo *${nome}* e gostaria de solicitar um orçamento para os seguintes serviços:
+
+*Serviços Selecionados:*
+${selecionados.join('\n')}
+
+*TOTAL ESTIMADO:* R$ ${totalFormatadoFinal}
+*Meu telefone:* ${telefone}
+`;
+
+            const numeroWhatsApp = '19993444657'; // <--- **MUDE ESTE NÚMERO PARA O SEU**
+            const url = `https://wa.me/55${numeroWhatsApp.replace(/\D/g, '')}?text=${encodeURIComponent(texto)}`;
+
+            window.open(url, '_blank');
+        }
+
+        // Inicializa a página e o cálculo ao carregar
+        window.onload = validarSelecao;
+    </script>
 </body>
 </html>
