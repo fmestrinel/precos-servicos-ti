@@ -143,7 +143,7 @@
             "Instalação de Programas"
         ];
         
-        // Função que combina validação e cálculo
+        // Função que combina validação e cálculo (mantida)
         function validarSelecao() {
             let total = 0;
             const selecionados = checkboxes.map((cb, i) => cb.checked ? i : null).filter(val => val !== null); // Índices (0-5) selecionados
@@ -155,9 +155,8 @@
 
             // 2. GERENCIAMENTO DE CONFLITOS (Regras ajustadas aos novos índices)
 
-            // Novo Regra 1: Se Limpeza (0) for selecionado, permite apenas 0, 1, 5
+            // Regra 1: Se Limpeza (0) for selecionado, permite apenas 0, 1, 5
             if (selecionados.includes(0)) {
-                // Índices permitidos: 0 (Limpeza), 1 (Formatação), 5 (Instalação de Programas)
                 const allowedIndices = [0, 1, 5]; 
                 checkboxes.forEach((cb, i) => {
                     if (!allowedIndices.includes(i)) {
@@ -167,9 +166,8 @@
                 });
             }
 
-            // Novo Regra 2: Se Formatação com Backup (2) for selecionado, permite apenas 2, 0, 5
+            // Regra 2: Se Formatação com Backup (2) for selecionado, permite apenas 2, 0, 5
             if (selecionados.includes(2)) {
-                // Índices permitidos: 2 (Form. c/ Backup), 0 (Limpeza), 5 (Instalação de Programas)
                 const allowedIndices = [2, 0, 5]; 
                 checkboxes.forEach((cb, i) => {
                     if (!allowedIndices.includes(i)) {
@@ -179,9 +177,8 @@
                 });
             }
 
-            // Novo Regra 3: Se Formatação + Limpeza (3) for selecionado, permite apenas 3, 5
+            // Regra 3: Se Formatação + Limpeza (3) for selecionado, permite apenas 3, 5
             if (selecionados.includes(3)) {
-                // Índices permitidos: 3 (Form. + Limpeza), 5 (Instalação de Programas)
                 const allowedIndices = [3, 5];
                 checkboxes.forEach((cb, i) => {
                     if (!allowedIndices.includes(i)) {
@@ -191,9 +188,8 @@
                 });
             }
 
-            // Novo Regra 4: Se Formatação c/ Backup + Limpeza (4) for selecionado, permite apenas 4, 5
+            // Regra 4: Se Formatação c/ Backup + Limpeza (4) for selecionado, permite apenas 4, 5
             if (selecionados.includes(4)) {
-                // Índices permitidos: 4 (Form. c/ B + L), 5 (Instalação de Programas)
                 const allowedIndices = [4, 5];
                 checkboxes.forEach((cb, i) => {
                     if (!allowedIndices.includes(i)) {
@@ -217,7 +213,7 @@
             document.getElementById('valorTotal').textContent = totalFormatado;
         }
 
-        // Função que envia a solicitação
+        // FUNÇÃO ENVIAR COM NOVO EMOJI E CORREÇÃO DE QUEBRA DE LINHA
         function enviar() {
             const nome = document.getElementById('nome').value.trim();
             const telefone = document.getElementById('telefone').value.trim();
@@ -252,7 +248,8 @@
             // Monta a mensagem final formatada
             const totalFormatadoFinal = total.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
             
-            const texto = `👋 Olá! Me chamo *${nome}* e gostaria de solicitar um orçamento para os seguintes serviços:
+            // NOVO EMOJI: 🤝 (Aperto de mão)
+            const texto = `🤝 Olá! Me chamo *${nome}* e gostaria de solicitar um orçamento para os seguintes serviços:
 
 *Serviços Selecionados:*
 ${selecionados.join('\n')}
@@ -261,8 +258,11 @@ ${selecionados.join('\n')}
 *Meu telefone:* ${telefone}
 `;
 
+            // CORREÇÃO DE QUEBRA DE LINHA: Codifica o texto e substitui \n por %0A
+            const textoCodificado = encodeURIComponent(texto).replace(/%0A/g, '\n').replace(/\n/g, '%0A');
+
             const numeroWhatsApp = '19993444657'; // <--- **MUDE ESTE NÚMERO PARA O SEU**
-            const url = `https://wa.me/55${numeroWhatsApp.replace(/\D/g, '')}?text=${encodeURIComponent(texto)}`;
+            const url = `https://wa.me/55${numeroWhatsApp.replace(/\D/g, '')}?text=${textoCodificado}`;
 
             window.open(url, '_blank');
         }
