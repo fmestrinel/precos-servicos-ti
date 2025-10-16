@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tabela de Serviços de Informática</title>
+  <style>
+    * { box-sizing: border-box; font-family: "Segoe UI", sans-serif; }
+    body {
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 420px;
+      width: 100%;
+    }
+    h2 { text-align: center; color: #333; }
+    .service { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .service input {
+      width: 100px; padding: 5px; border: 1px solid #ccc; border-radius: 6px; text-align: right;
+    }
+    .form { margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px; }
+    .form label { display: block; margin-bottom: 5px; font-weight: 600; }
+    .form input, .form select { width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 6px; border: 1px solid #ccc; }
+    button {
+      width: 100%; background-color: #007bff; border: none; color: white;
+      padding: 10px; font-size: 16px; border-radius: 6px; cursor: pointer; transition: 0.3s;
+    }
+    button:hover { background-color: #0056b3; }
+    .success { color: green; text-align: center; margin-top: 10px; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Serviços de Informática</h2>
+
+    <div id="services">
+      <div class="service"><span>Limpeza</span><input type="text" id="preco1" placeholder="R$ 60,00"></div>
+      <div class="service"><span>Formatação</span><input type="text" id="preco2" placeholder="R$ 80,00"></div>
+      <div class="service"><span>Formatação com Backup</span><input type="text" id="preco3" placeholder="R$ 120,00"></div>
+      <div class="service"><span>Formatação com Limpeza</span><input type="text" id="preco4" placeholder="R$ 120,00"></div>
+      <div class="service"><span>Formatação c/ Backup + Limpeza</span><input type="text" id="preco5" placeholder="R$ 150,00"></div>
+      <div class="service"><span>Instalação de Sistema Operacional</span><input type="text" id="preco6" placeholder="R$ 80,00"></div>
+      <div class="service"><span>Instalação de Programas</span><input type="text" id="preco7" placeholder="R$ 50,00"></div>
+    </div>
+
+    <div class="form">
+      <label for="servico">Selecione o serviço desejado:</label>
+      <select id="servico">
+        <option value="">Selecione...</option>
+        <option>Limpeza</option>
+        <option>Formatação</option>
+        <option>Formatação com Backup</option>
+        <option>Formatação com Limpeza</option>
+        <option>Formatação c/ Backup + Limpeza</option>
+        <option>Instalação de Sistema Operacional</option>
+        <option>Instalação de Programas</option>
+      </select>
+
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" placeholder="Seu nome">
+
+      <label for="telefone">Telefone:</label>
+      <input type="text" id="telefone" placeholder="(DDD) 00000-0000">
+
+      <button onclick="enviar()">Enviar Solicitação</button>
+      <p class="success" id="msgSucesso">✅ Solicitação enviada com sucesso!</p>
+    </div>
+  </div>
+
+  <script>
+    // Valores padrão
+    const precosPadrao = ["R$ 60,00", "R$ 80,00", "R$ 120,00", "R$ 120,00", "R$ 150,00", "R$ 80,00", "R$ 50,00"];
+
+    for (let i = 1; i <= 7; i++) {
+      const precoInput = document.getElementById(`preco${i}`);
+      // Recuperar valor salvo ou usar padrão
+      precoInput.value = localStorage.getItem(`preco${i}`) || precosPadrao[i-1];
+
+      // Salvar automaticamente ao digitar
+      precoInput.addEventListener('input', () => {
+        localStorage.setItem(`preco${i}`, precoInput.value);
+      });
+    }
+
+    function enviar() {
+      const servico = document.getElementById('servico').value;
+      const nome = document.getElementById('nome').value;
+      const telefone = document.getElementById('telefone').value;
+
+      if (!servico || !nome || !telefone) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+
+      const numeroWhatsApp = '19993444657'; 
+      const texto = `Olá! Me chamo ${nome}. Gostaria de solicitar o serviço: *${servico}*. Meu telefone é ${telefone}.`;
+      const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
+      
+      window.open(url, '_blank');
+      document.getElementById('msgSucesso').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
+      
