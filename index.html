@@ -1,4 +1,4 @@
-viar<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -31,6 +31,9 @@ viar<!DOCTYPE html>
       align-items: center;
       margin-bottom: 10px;
     }
+    .service input[type="checkbox"] {
+      margin-right: 10px;
+    }
     .preco {
       width: 100px;
       text-align: right;
@@ -47,7 +50,7 @@ viar<!DOCTYPE html>
       margin-bottom: 5px;
       font-weight: 600;
     }
-    .form input, .form select {
+    .form input {
       width: 100%;
       padding: 8px;
       margin-bottom: 15px;
@@ -79,28 +82,16 @@ viar<!DOCTYPE html>
     <h2>Serviços de Informática</h2>
 
     <div id="services">
-      <div class="service"><span>Limpeza</span><span class="preco" id="preco1"></span></div>
-      <div class="service"><span>Formatação</span><span class="preco" id="preco2"></span></div>
-      <div class="service"><span>Formatação com Backup</span><span class="preco" id="preco3"></span></div>
-      <div class="service"><span>Formatação com Limpeza</span><span class="preco" id="preco4"></span></div>
-      <div class="service"><span>Formatação c/ Backup + Limpeza</span><span class="preco" id="preco5"></span></div>
-      <div class="service"><span>Instalação de Sistema Operacional</span><span class="preco" id="preco6"></span></div>
-      <div class="service"><span>Instalação de Programas</span><span class="preco" id="preco7"></span></div>
+      <div class="service"><input type="checkbox" id="serv1" onchange="validarSelecao()"> <span>Limpeza</span><span class="preco" id="preco1"></span></div>
+      <div class="service"><input type="checkbox" id="serv2" onchange="validarSelecao()"> <span>Formatação</span><span class="preco" id="preco2"></span></div>
+      <div class="service"><input type="checkbox" id="serv3" onchange="validarSelecao()"> <span>Formatação com Backup de dados</span><span class="preco" id="preco3"></span></div>
+      <div class="service"><input type="checkbox" id="serv4" onchange="validarSelecao()"> <span>Formatação + Limpeza</span><span class="preco" id="preco4"></span></div>
+      <div class="service"><input type="checkbox" id="serv5" onchange="validarSelecao()"> <span>Formatação c/ Backup + Limpeza</span><span class="preco" id="preco5"></span></div>
+      <div class="service"><input type="checkbox" id="serv6" onchange="validarSelecao()"> <span>Instalação de Sistema Operacional</span><span class="preco" id="preco6"></span></div>
+      <div class="service"><input type="checkbox" id="serv7" onchange="validarSelecao()"> <span>Instalação de Programas</span><span class="preco" id="preco7"></span></div>
     </div>
 
     <div class="form">
-      <label for="servico">Selecione o serviço desejado:</label>
-      <select id="servico">
-        <option value="">Selecione...</option>
-        <option>Limpeza</option>
-        <option>Formatação</option>
-        <option>Formatação com Backup</option>
-        <option>Formatação com Limpeza</option>
-        <option>Formatação c/ Backup + Limpeza</option>
-        <option>Instalação de Sistema Operacional</option>
-        <option>Instalação de Programas</option>
-      </select>
-
       <label for="nome">Nome:</label>
       <input type="text" id="nome" placeholder="Seu nome">
 
@@ -114,24 +105,72 @@ viar<!DOCTYPE html>
 
   <script>
     const precosPadrao = ["R$ 60,00", "R$ 80,00", "R$ 120,00", "R$ 120,00", "R$ 150,00", "R$ 80,00", "R$ 50,00"];
+    const servicos = [
+      "Limpeza",
+      "Formatação",
+      "Formatação com Backup de dados",
+      "Formatação + Limpeza",
+      "Formatação c/ Backup + Limpeza",
+      "Instalação de Sistema Operacional",
+      "Instalação de Programas"
+    ];
 
     for (let i = 1; i <= 7; i++) {
-      const precoSpan = document.getElementById(`preco${i}`);
-      precoSpan.textContent = precosPadrao[i - 1];
+      document.getElementById(`preco${i}`).textContent = precosPadrao[i - 1];
+    }
+
+    function validarSelecao() {
+      const checkboxes = Array.from({ length: 7 }, (_, i) => document.getElementById(`serv${i + 1}`));
+      const selecionados = checkboxes.map((cb, i) => cb.checked ? i + 1 : null).filter(Boolean);
+
+      checkboxes.forEach(cb => cb.disabled = false);
+
+      if (selecionados.includes(1)) {
+        checkboxes.forEach((cb, i) => {
+          if (![1, 2, 6, 7].includes(i + 1)) cb.disabled = true;
+        });
+      } else if (selecionados.includes(3)) {
+        checkboxes.forEach((cb, i) => {
+          if (![3, 1, 7].includes(i + 1)) cb.disabled = true;
+        });
+      } else if (selecionados.includes(4)) {
+        checkboxes.forEach((cb, i) => {
+          if (![4, 7].includes(i + 1)) cb.disabled = true;
+        });
+      } else if (selecionados.includes(5)) {
+        checkboxes.forEach((cb, i) => {
+          if (![5, 7].includes(i + 1)) cb.disabled = true;
+        });
+      }
     }
 
     function enviar() {
-      const servico = document.getElementById('servico').value;
-      const nome = document.getElementById('nome').value;
-      const telefone = document.getElementById('telefone').value;
-
-      if (!servico || !nome || !telefone) {
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      if (!nome || !telefone) {
         alert('Por favor, preencha todos os campos.');
         return;
       }
 
+      const selecionados = [];
+      let total = 0;
+
+      for (let i = 1; i <= 7; i++) {
+        const checkbox = document.getElementById(`serv${i}`);
+        if (checkbox.checked) {
+          selecionados.push(`${servicos[i - 1]} (${precosPadrao[i - 1]})`);
+          total += parseFloat(precosPadrao[i - 1].replace("R$ ", "").replace(",", "."));
+        }
+      }
+
+      if (selecionados.length === 0) {
+        alert('Selecione pelo menos um serviço.');
+        return;
+      }
+
+      const resumo = selecionados.join(", ") + `. Totalizando R$ ${total.toFixed(2).replace(".", ",")}`;
+      const texto = `Olá! Me chamo ${nome}. Gostaria de solicitar os seguintes serviços: ${resumo}. Meu telefone é ${telefone}.`;
       const numeroWhatsApp = '19993444657';
-      const texto = `Olá! Me chamo ${nome}. Gostaria de solicitar o serviço: *${servico}*. Meu telefone é ${telefone}.`;
       const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(texto)}`;
 
       window.open(url, '_blank');
