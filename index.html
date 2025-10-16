@@ -27,8 +27,16 @@
         max-width: 420px;
         width: 100%;
     }
+    .mestrinel {
+        text-align: center;
+        color: #333;
+        margin-bottom: 5px;
+        font-weight: 700;
+        font-size: 1.4em;
+        letter-spacing: 1px;
+    }
     h2 {
-        text-align: left;
+        text-align: center;
         color: #333;
         margin-bottom: 15px;
         font-weight: 700;
@@ -127,6 +135,7 @@
 </head>
 <body>
 <div class="container">
+    <div class="mestrinel">MESTRINEL</div>
     <h2>Serviços de Informática 💻</h2>
 
     <label style="font-weight: bold; margin-bottom: 15px; display: block;">Quais equipamentos precisam de serviço?</label>
@@ -139,7 +148,7 @@
 
     <div id="services-container">
         <div id="desktop-section" class="equipment-section" style="display:none;">
-            <h3>PC de Mesa (Desktop)</h3>
+            <h3>PC de Mesa (Desktop)🖥️</h3>
             <div class="service" data-preco="60.00"><label><input type="checkbox" id="desk0" onchange="validarSelecao('desk')"><span>Limpeza</span></label><span class="preco">R$ 60,00</span></div>
             <div class="service" data-preco="80.00"><label><input type="checkbox" id="desk1" onchange="validarSelecao('desk')"><span>Formatação (Inclui SO)</span></label><span class="preco">R$ 80,00</span></div>
             <div class="service" data-preco="120.00"><label><input type="checkbox" id="desk2" onchange="validarSelecao('desk')"><span>Formatação c/ Backup de dados</span></label><span class="preco">R$ 120,00</span></div>
@@ -149,7 +158,7 @@
         </div>
 
         <div id="laptop-section" class="equipment-section" style="display:none;">
-            <h3>Laptop (Notebook)</h3>
+            <h3>Laptop (Notebook)💻</h3>
             <div class="service" data-preco="60.00"><label><input type="checkbox" id="lap0" onchange="validarSelecao('lap')"><span>Limpeza</span></label><span class="preco">R$ 60,00</span></div>
             <div class="service" data-preco="80.00"><label><input type="checkbox" id="lap1" onchange="validarSelecao('lap')"><span>Formatação (Inclui SO)</span></label><span class="preco">R$ 80,00</span></div>
             <div class="service" data-preco="120.00"><label><input type="checkbox" id="lap2" onchange="validarSelecao('lap')"><span>Formatação c/ Backup de dados</span></label><span class="preco">R$ 120,00</span></div>
@@ -267,7 +276,7 @@ function enviar(){
     if(laptopChecked && qtdLap===0) return alert('Selecione ao menos um serviço para o Laptop.');
     if(total===0) return alert('Selecione pelo menos um serviço.');
 
-    const msg=`🤝 Olá! Me chamo *${nome}* e gostaria de solicitar o serviço.\n\n🧾 *Serviços Selecionados:*\n\n${resumoServicos.join('\n\n')}\n\n💰 *TOTAL ESTIMADO:* R$ ${total.toFixed(2).replace('.',',')}`;
+    const msg=`🤝 Olá! Me chamo *${nome}* e gostaria de fazer uma solicitação.\n\n🧾 *Serviços Selecionados:*\n\n${resumoServicos.join('\n\n')}\n\n💰 *TOTAL ESTIMADO:* R$ ${total.toFixed(2).replace('.',',')}`;
     const numero='19993444657';
     const url=`https://wa.me/55${numero}?text=${encodeURIComponent(msg)}`;
     window.open(url,'_blank');
