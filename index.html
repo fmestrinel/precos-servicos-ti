@@ -1,175 +1,183 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FM Tech - Serviços de Informática</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FM Tech - Serviços de Informática</title>
 
-<style>
-/* Definição de Cores (Variáveis) */
-:root {
-    --bg-body: #000000;
-    --bg-container: #ffffff;
-    --text-main: #000000;
-    --text-slogan: #444444;
-    --bg-section: #f9f9f9;
-    --border-color: #dddddd;
-    --input-bg: #ffffff;
-    --bg-total: #e9f5ff;
-    --text-total: #000000;
-}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fmestrinel.github.io/precos-servicos-ti/">
+    <meta property="og:title" content="FM Tech - Serviços de Informática">
+    <meta property="og:description" content="Tabela de preços atualizada: Formatação, Limpeza e Manutenção.">
+    <meta property="og:image" content="https://fmestrinel.github.io/precos-servicos-ti/logo_fm_tech.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
-/* Cores para o Modo Escuro */
-body.dark-mode {
-    --bg-body: #121212;
-    --bg-container: #282828;
-    --text-main: #ffffff;
-    --text-slogan: #bbbbbb;
-    --bg-section: #2d2d2d;
-    --border-color: #444444;
-    --input-bg: #333333;
-    --bg-total: #1a3a5a;
-    --text-total: #ffffff;
-}
+    <style>
+        /* Definição de Cores (Variáveis) */
+        :root {
+            --bg-body: #000000;
+            --bg-container: #ffffff;
+            --text-main: #000000;
+            --text-slogan: #444444;
+            --bg-section: #f9f9f9;
+            --border-color: #dddddd;
+            --input-bg: #ffffff;
+            --bg-total: #e9f5ff;
+            --text-total: #000000;
+        }
 
-*{
-    box-sizing:border-box;
-    font-family:"Segoe UI",Tahoma,Verdana,sans-serif;
-    transition: background 0.3s, color 0.3s;
-}
+        /* Cores para o Modo Escuro - Ajustadas para o fundo do seu logo (#282828) */
+        body.dark-mode {
+            --bg-body: #282828;      /* Igual ao fundo da sua imagem logo_fm_tech_escuro.png */
+            --bg-container: #282828; /* Igual ao fundo da sua imagem logo_fm_tech_escuro.png */
+            --text-main: #ffffff;
+            --text-slogan: #bbbbbb;
+            --bg-section: #333333;   /* Um pouco mais claro para destacar as seções */
+            --border-color: #444444;
+            --input-bg: #3d3d3d;
+            --bg-total: #1a3a5a;
+            --text-total: #ffffff;
+        }
 
-body{
-    background: var(--bg-body);
-    margin:0;
-    padding:0;
-    display:flex;
-    justify-content:center;
-    min-height:100vh;
-}
+        *{
+            box-sizing:border-box;
+            font-family:"Segoe UI",Tahoma,Verdana,sans-serif;
+            transition: background 0.3s, color 0.3s;
+        }
 
-#theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    width: auto;
-    padding: 10px 15px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-}
+        body{
+            background: var(--bg-body);
+            margin:0;
+            padding:0;
+            display:flex;
+            justify-content:center;
+            min-height:100vh;
+        }
 
-.container{
-    background: var(--bg-container);
-    color: var(--text-main);
-    padding:20px;
-    margin:25px 10px;
-    border-radius:14px;
-    max-width:420px;
-    width:100%;
-    box-shadow:0 4px 12px rgba(0,0,0,.25);
-}
+        #theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: auto;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
 
-.logo{
-    display:block;
-    margin:0 auto 15px;
-    max-width:220px;
-}
+        .container{
+            background: var(--bg-container);
+            color: var(--text-main);
+            padding:20px;
+            margin:25px 10px;
+            border-radius:14px;
+            max-width:420px;
+            width:100%;
+            box-shadow:0 4px 12px rgba(0,0,0,.25);
+        }
 
-.slogan{
-    text-align:center;
-    font-size:.9em;
-    font-weight:600;
-    color: var(--text-slogan);
-    margin-bottom:12px;
-}
+        .logo{
+            display:block;
+            margin:0 auto 15px;
+            max-width:220px;
+        }
 
-h2{
-    text-align:center;
-    margin-bottom:10px;
-}
+        .slogan{
+            text-align:center;
+            font-size:.9em;
+            font-weight:600;
+            color: var(--text-slogan);
+            margin-bottom:12px;
+        }
 
-.service{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:10px;
-}
+        h2{
+            text-align:center;
+            margin-bottom:10px;
+        }
 
-.service label{
-    display:flex;
-    align-items:center;
-    cursor:pointer;
-}
+        .service{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:10px;
+        }
 
-.service input{
-    margin-right:8px;
-    transform:scale(1.1);
-}
+        .service label{
+            display:flex;
+            align-items:center;
+            cursor:pointer;
+        }
 
-.preco{
-    font-weight:600;
-    color:#007bff;
-}
+        .service input{
+            margin-right:8px;
+            transform:scale(1.1);
+        }
 
-.equipment-section{
-    border:1px solid var(--border-color);
-    padding:14px;
-    margin-top:15px;
-    border-radius:10px;
-    background: var(--bg-section);
-    display:none;
-}
+        .preco{
+            font-weight:600;
+            color:#007bff;
+        }
 
-.equipment-section h3{
-    margin-top:0;
-    color:#007bff;
-    border-bottom:2px solid #007bff;
-    padding-bottom:4px;
-}
+        .equipment-section{
+            border:1px solid var(--border-color);
+            padding:14px;
+            margin-top:15px;
+            border-radius:10px;
+            background: var(--bg-section);
+            display:none;
+        }
 
-.total-box{
-    border:2px solid #007bff;
-    background: var(--bg-total);
-    padding:10px;
-    border-radius:8px;
-    display:flex;
-    justify-content:space-between;
-    font-weight:700;
-    margin:20px 0;
-    color: var(--text-total);
-}
+        .equipment-section h3{
+            margin-top:0;
+            color:#007bff;
+            border-bottom:2px solid #007bff;
+            padding-bottom:4px;
+        }
 
-input[type="text"]{
-    width:100%;
-    padding:10px;
-    border-radius:6px;
-    border:1px solid var(--border-color);
-    margin-bottom:15px;
-    background: var(--input-bg);
-    color: var(--text-main);
-}
+        .total-box{
+            border:2px solid #007bff;
+            background: var(--bg-total);
+            padding:10px;
+            border-radius:8px;
+            display:flex;
+            justify-content:space-between;
+            font-weight:700;
+            margin:20px 0;
+            color: var(--text-total);
+        }
 
-.btn-whatsapp{
-    width:100%;
-    padding:14px;
-    background:#25D366;
-    border:none;
-    border-radius:8px;
-    color:#fff;
-    font-size:16px;
-    font-weight:700;
-    cursor:pointer;
-}
+        input[type="text"]{
+            width:100%;
+            padding:10px;
+            border-radius:6px;
+            border:1px solid var(--border-color);
+            margin-bottom:15px;
+            background: var(--input-bg);
+            color: var(--text-main);
+        }
 
-.btn-whatsapp:hover{background:#128C7E;}
-input:disabled+span{color:#888;}
-</style>
+        .btn-whatsapp{
+            width:100%;
+            padding:14px;
+            background:#25D366;
+            border:none;
+            border-radius:8px;
+            color:#fff;
+            font-size:16px;
+            font-weight:700;
+            cursor:pointer;
+        }
+
+        .btn-whatsapp:hover{background:#128C7E;}
+        input:disabled+span{color:#888;}
+    </style>
 </head>
 
 <body>
@@ -207,7 +215,7 @@ input:disabled+span{color:#888;}
 <div class="service" data-preco="70"><label><input type="checkbox" id="lap1" onchange="validar('lap')"><span>Formatação</span></label><span class="preco">R$ 70</span></div>
 <div class="service" data-preco="100"><label><input type="checkbox" id="lap2" onchange="validar('lap')"><span>Formatação + Backup</span></label><span class="preco">R$ 100</span></div>
 <div class="service" data-preco="100"><label><input type="checkbox" id="lap3" onchange="validar('lap')"><span>Formatação + Limpeza</span></label><span class="preco">R$ 100</span></div>
-<div class="service" data-preco="130"><label><input type="checkbox" id="lap4" onchange="validar('lap')"><span>Formatação + Backup + Limpeza</span></label><span class="preco">R$ 130</span></div>
+<div class="service" data-preco="130"><label><input type="checkbox" id="lap4" onchange="validar('lap')"><span>Formatação + Backup + Limpeza</span></label><span class="preco canvas-130">R$ 130</span></div>
 <div class="service" data-preco="40"><label><input type="checkbox" id="lap5" onchange="validar('lap')"><span>Instalação de Programas</span></label><span class="preco">R$ 40</span></div>
 </div>
 
@@ -232,10 +240,10 @@ function toggleTheme() {
     
     if (body.classList.contains('dark-mode')) {
         btn.innerText = "☀️ Modo Claro";
-        logo.src = "logo_fm_tech_escuro.png"; // Troca para imagem clara (fundo escuro)
+        logo.src = "logo_fm_tech_escuro.png"; 
     } else {
         btn.innerText = "🌙 Modo Escuro";
-        logo.src = "logo_fm_tech.png"; // Volta para imagem escura (fundo claro)
+        logo.src = "logo_fm_tech.png";
     }
 }
 
