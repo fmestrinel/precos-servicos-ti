@@ -3,291 +3,321 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tabela de Serviços de Informática</title>
+<title>FM Tech - Serviços de Informática</title>
+
 <style>
-    * {
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body {
-        background: #000000;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        min-height: 100vh;
-    }
-    .container {
-        background: white;
-        padding: 20px;
-        margin-top: 30px;
-        border-radius: 12px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        max-width: 420px;
-        width: 100%;
-    }
-    .mestrinel {
-        text-align: center;
-        color: #333;
-        margin-bottom: 5px;
-        font-weight: 700;
-        font-size: 1.4em;
-        letter-spacing: 1px;
-    }
-    h2 {
-        text-align: center;
-        color: #333;
-        margin-bottom: 5px;
-        font-weight: 700;
-    }
+/* Definição de Cores (Variáveis) */
+:root {
+    --bg-body: #000000;
+    --bg-container: #ffffff;
+    --text-main: #000000;
+    --text-slogan: #444444;
+    --bg-section: #f9f9f9;
+    --border-color: #dddddd;
+    --input-bg: #ffffff;
+    --bg-total: #e9f5ff;
+    --text-total: #000000;
+}
 
+/* Cores para o Modo Escuro */
+body.dark-mode {
+    --bg-body: #121212;
+    --bg-container: #282828;
+    --text-main: #ffffff;
+    --text-slogan: #bbbbbb;
+    --bg-section: #2d2d2d;
+    --border-color: #444444;
+    --input-bg: #333333;
+    --bg-total: #1a3a5a;
+    --text-total: #ffffff;
+}
 
-    .service {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 10px;
-        padding-left: 5px;
-    }
-    .service label {
-        display: flex;
-        align-items: center;
-        flex-grow: 1;
-        cursor: pointer;
-        font-size: 0.95em;
-    }
-    .service input[type="checkbox"] {
-        margin-right: 10px;
-        transform: scale(1.1);
-    }
-    .service .preco {
-        font-weight: 600;
-        color: #007bff;
-        text-align: right;
-        width: 80px;
-        flex-shrink: 0;
-    }
-    .service input:disabled + span {
-        color: #aaa;
-        cursor: not-allowed;
-    }
-    .service input:disabled + span + .preco {
-        color: #aaa;
-        text-decoration: line-through;
-    }
-    .equipment-section {
-        border: 1px solid #ddd;
-        padding: 15px;
-        margin-top: 15px;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-    }
-    .equipment-section h3 {
-        margin-top: 0;
-        border-bottom: 2px solid #007bff;
-        padding-bottom: 5px;
-        color: #007bff;
-    }
-    .form {
-        margin-top: 25px;
-        border-top: 1px solid #ddd;
-        padding-top: 15px;
-    }
-    .form label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 600;
-    }
-    .form input[type="text"] {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 6px;
-        border: 1px solid #ccc;
-        font-size: 14px;
-    }
-    .total-box {
-        border: 2px solid #007bff;
-        padding: 10px;
-        margin-bottom: 20px;
-        border-radius: 6px;
-        background-color: #e9f5ff;
-        display: flex;
-        justify-content: space-between;
-        font-weight: 700;
-        font-size: 1.1em;
-    }
-    button {
-        width: 100%;
-        background-color: #25D366;
-        border: none;
-        color: white;
-        padding: 12px;
-        font-size: 16px;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: 0.3s;
-        font-weight: 600;
-    }
-    button:hover {
-        background-color: #128C7E;
-    }
+*{
+    box-sizing:border-box;
+    font-family:"Segoe UI",Tahoma,Verdana,sans-serif;
+    transition: background 0.3s, color 0.3s;
+}
+
+body{
+    background: var(--bg-body);
+    margin:0;
+    padding:0;
+    display:flex;
+    justify-content:center;
+    min-height:100vh;
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: auto;
+    padding: 10px 15px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.container{
+    background: var(--bg-container);
+    color: var(--text-main);
+    padding:20px;
+    margin:25px 10px;
+    border-radius:14px;
+    max-width:420px;
+    width:100%;
+    box-shadow:0 4px 12px rgba(0,0,0,.25);
+}
+
+.logo{
+    display:block;
+    margin:0 auto 15px;
+    max-width:220px;
+}
+
+.slogan{
+    text-align:center;
+    font-size:.9em;
+    font-weight:600;
+    color: var(--text-slogan);
+    margin-bottom:12px;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.service{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.service label{
+    display:flex;
+    align-items:center;
+    cursor:pointer;
+}
+
+.service input{
+    margin-right:8px;
+    transform:scale(1.1);
+}
+
+.preco{
+    font-weight:600;
+    color:#007bff;
+}
+
+.equipment-section{
+    border:1px solid var(--border-color);
+    padding:14px;
+    margin-top:15px;
+    border-radius:10px;
+    background: var(--bg-section);
+    display:none;
+}
+
+.equipment-section h3{
+    margin-top:0;
+    color:#007bff;
+    border-bottom:2px solid #007bff;
+    padding-bottom:4px;
+}
+
+.total-box{
+    border:2px solid #007bff;
+    background: var(--bg-total);
+    padding:10px;
+    border-radius:8px;
+    display:flex;
+    justify-content:space-between;
+    font-weight:700;
+    margin:20px 0;
+    color: var(--text-total);
+}
+
+input[type="text"]{
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid var(--border-color);
+    margin-bottom:15px;
+    background: var(--input-bg);
+    color: var(--text-main);
+}
+
+.btn-whatsapp{
+    width:100%;
+    padding:14px;
+    background:#25D366;
+    border:none;
+    border-radius:8px;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.btn-whatsapp:hover{background:#128C7E;}
+input:disabled+span{color:#888;}
 </style>
 </head>
+
 <body>
+
+<button id="theme-toggle" onclick="toggleTheme()">🌙 Modo Escuro</button>
+
 <div class="container">
-    <div class="mestrinel"></div>
 
-    <h2>Serviços de Informática 💻</h2>
+<img src="logo_fm_tech.png" id="logo-img" class="logo" alt="FM Tech">
+<div class="slogan">Formatação • Suporte • Manutenção</div>
 
+<h2>Serviços de Informática 💻</h2>
 
-    <label style="font-weight: bold; margin-bottom: 15px; display: block;">Quais equipamentos precisam de serviço?</label>
+<div class="service">
+<label><input type="checkbox" id="checkDesktop" onchange="toggleSection('desk')">PC de Mesa (Desktop)</label>
+</div>
 
-    <div class="service" style="padding-left: 0;">
-        <label><input type="checkbox" id="checkDesktop" onchange="toggleEquipmentSection('desktop')"> <span>PC de Mesa (Desktop)</span></label>
-    </div>
-    <div class="service" style="padding-left: 0; margin-bottom: 0;">
-        <label><input type="checkbox" id="checkLaptop" onchange="toggleEquipmentSection('laptop')"> <span>Laptop (Notebook)</span></label>
-    </div>
+<div class="service">
+<label><input type="checkbox" id="checkLaptop" onchange="toggleSection('lap')">Laptop (Notebook)</label>
+</div>
 
-    <div id="services-container">
-        <div id="desktop-section" class="equipment-section" style="display:none;">
-            <h3>PC de Mesa (Desktop)🖥️</h3>
-            <div class="service" data-preco="50.00"><label><input type="checkbox" id="desk0" onchange="validarSelecao('desk')"><span>Limpeza</span></label><span class="preco">R$ 50,00</span></div>
-            <div class="service" data-preco="70.00"><label><input type="checkbox" id="desk1" onchange="validarSelecao('desk')"><span>Formatação (Inclui S.O. + DRIVERS)</span></label><span class="preco">R$ 70,00</span></div>
-            <div class="service" data-preco="100.00"><label><input type="checkbox" id="desk2" onchange="validarSelecao('desk')"><span>Formatação c/ Backup de dados</span></label><span class="preco">R$ 100,00</span></div>
-            <div class="service" data-preco="100.00"><label><input type="checkbox" id="desk3" onchange="validarSelecao('desk')"><span>Formatação + Limpeza</span></label><span class="preco">R$ 100,00</span></div>
-            <div class="service" data-preco="130.00"><label><input type="checkbox" id="desk4" onchange="validarSelecao('desk')"><span>Formatação c/ Backup + Limpeza</span></label><span class="preco">R$ 130,00</span></div>
-            <div class="service" data-preco="40.00"><label><input type="checkbox" id="desk5" onchange="validarSelecao('desk')"><span>Instalação de Programas</span></label><span class="preco">R$ 40,00</span></div>
-        </div>
+<div id="desk-section" class="equipment-section">
+<h3>Desktop 🖥️</h3>
+<div class="service" data-preco="50"><label><input type="checkbox" id="desk0" onchange="validar('desk')"><span>Limpeza</span></label><span class="preco">R$ 50</span></div>
+<div class="service" data-preco="70"><label><input type="checkbox" id="desk1" onchange="validar('desk')"><span>Formatação</span></label><span class="preco">R$ 70</span></div>
+<div class="service" data-preco="100"><label><input type="checkbox" id="desk2" onchange="validar('desk')"><span>Formatação + Backup</span></label><span class="preco">R$ 100</span></div>
+<div class="service" data-preco="100"><label><input type="checkbox" id="desk3" onchange="validar('desk')"><span>Formatação + Limpeza</span></label><span class="preco">R$ 100</span></div>
+<div class="service" data-preco="130"><label><input type="checkbox" id="desk4" onchange="validar('desk')"><span>Formatação + Backup + Limpeza</span></label><span class="preco">R$ 130</span></div>
+<div class="service" data-preco="40"><label><input type="checkbox" id="desk5" onchange="validar('desk')"><span>Instalação de Programas</span></label><span class="preco">R$ 40</span></div>
+</div>
 
-        <div id="laptop-section" class="equipment-section" style="display:none;">
-            <h3>Laptop (Notebook)💻</h3>
-            <div class="service" data-preco="50.00"><label><input type="checkbox" id="lap0" onchange="validarSelecao('lap')"><span>Limpeza</span></label><span class="preco">R$ 50,00</span></div>
-            <div class="service" data-preco="70.00"><label><input type="checkbox" id="lap1" onchange="validarSelecao('lap')"><span>Formatação (Inclui S.O. + DRIVERS)</span></label><span class="preco">R$ 70,00</span></div>
-            <div class="service" data-preco="100.00"><label><input type="checkbox" id="lap2" onchange="validarSelecao('lap')"><span>Formatação c/ Backup de dados</span></label><span class="preco">R$ 100,00</span></div>
-            <div class="service" data-preco="100.00"><label><input type="checkbox" id="lap3" onchange="validarSelecao('lap')"><span>Formatação + Limpeza</span></label><span class="preco">R$ 100,00</span></div>
-            <div class="service" data-preco="130.00"><label><input type="checkbox" id="lap4" onchange="validarSelecao('lap')"><span>Formatação c/ Backup + Limpeza</span></label><span class="preco">R$ 130,00</span></div>
-            <div class="service" data-preco="40.00"><label><input type="checkbox" id="lap5" onchange="validarSelecao('lap')"><span>Instalação de Programas</span></label><span class="preco">R$ 40,00</span></div>
-        </div>
-    </div>
+<div id="lap-section" class="equipment-section">
+<h3>Laptop 💻</h3>
+<div class="service" data-preco="50"><label><input type="checkbox" id="lap0" onchange="validar('lap')"><span>Limpeza</span></label><span class="preco">R$ 50</span></div>
+<div class="service" data-preco="70"><label><input type="checkbox" id="lap1" onchange="validar('lap')"><span>Formatação</span></label><span class="preco">R$ 70</span></div>
+<div class="service" data-preco="100"><label><input type="checkbox" id="lap2" onchange="validar('lap')"><span>Formatação + Backup</span></label><span class="preco">R$ 100</span></div>
+<div class="service" data-preco="100"><label><input type="checkbox" id="lap3" onchange="validar('lap')"><span>Formatação + Limpeza</span></label><span class="preco">R$ 100</span></div>
+<div class="service" data-preco="130"><label><input type="checkbox" id="lap4" onchange="validar('lap')"><span>Formatação + Backup + Limpeza</span></label><span class="preco">R$ 130</span></div>
+<div class="service" data-preco="40"><label><input type="checkbox" id="lap5" onchange="validar('lap')"><span>Instalação de Programas</span></label><span class="preco">R$ 40</span></div>
+</div>
 
-    <div class="form">
-        <div class="total-box">
-            <span>TOTAL ESTIMADO:</span>
-            <span id="valorTotal">R$ 0,00</span>
-        </div>
+<div class="total-box">
+<span>TOTAL:</span>
+<span id="total">R$ 0,00</span>
+</div>
 
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" placeholder="Seu nome">
+<input type="text" id="nome" placeholder="Seu nome">
+<button class="btn-whatsapp" onclick="enviar()">SOLICITAR SERVIÇO</button>
 
-        <button onclick="enviar()">SOLICITAR SERVIÇO</button>
-    </div>
 </div>
 
 <script>
-const NUM_SERVICOS = 6;
-const nomesServicos = [
-    "Limpeza",
-    "Formatação (Inclui Sistema Operacional)",
-    "Formatação com Backup de dados",
-    "Formatação + Limpeza",
-    "Formatação c/ Backup + Limpeza",
-    "Instalação de Programas"
+// FUNÇÃO PARA ALTERNAR TEMA E LOGO
+function toggleTheme() {
+    const body = document.body;
+    const btn = document.getElementById('theme-toggle');
+    const logo = document.getElementById('logo-img');
+    
+    body.classList.toggle('dark-mode');
+    
+    if (body.classList.contains('dark-mode')) {
+        btn.innerText = "☀️ Modo Claro";
+        logo.src = "logo_fm_tech_escuro.png"; // Troca para imagem clara (fundo escuro)
+    } else {
+        btn.innerText = "🌙 Modo Escuro";
+        logo.src = "logo_fm_tech.png"; // Volta para imagem escura (fundo claro)
+    }
+}
+
+const nomes=[
+"Limpeza",
+"Formatação",
+"Formatação + Backup",
+"Formatação + Limpeza",
+"Formatação + Backup + Limpeza",
+"Instalação de Programas"
 ];
 
-function toggleEquipmentSection(type) {
-    const checkbox = document.getElementById(`check${type.charAt(0).toUpperCase() + type.slice(1)}`);
-    const section = document.getElementById(`${type}-section`);
-    section.style.display = checkbox.checked ? 'block' : 'none';
-    if (!checkbox.checked) {
-        section.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-    }
-    calcularTotalGeral();
+function toggleSection(p){
+document.getElementById(p+'-section').style.display=
+document.getElementById('check'+(p=='desk'?'Desktop':'Laptop')).checked?'block':'none';
+calcular();
 }
 
-function validarSelecao(prefix) {
-    const checkboxes = Array.from({length: NUM_SERVICOS}, (_, i) => document.getElementById(`${prefix}${i}`));
-    const selecionados = checkboxes.map((cb,i)=>cb.checked?i:null).filter(i=>i!==null);
-
-    checkboxes.forEach(cb=>cb.disabled=false);
-
-    if (selecionados.includes(0)) {
-        const allowed=[0,1,5];
-        checkboxes.forEach((cb,i)=>{if(!allowed.includes(i)){cb.disabled=true;cb.checked=false;}});
-    }
-    if (selecionados.includes(2)) {
-        const allowed=[2,0,5];
-        checkboxes.forEach((cb,i)=>{if(!allowed.includes(i)){cb.disabled=true;cb.checked=false;}});
-    }
-    if (selecionados.includes(3)) {
-        const allowed=[3,5];
-        checkboxes.forEach((cb,i)=>{if(!allowed.includes(i)){cb.disabled=true;cb.checked=false;}});
-    }
-    if (selecionados.includes(4)) {
-        const allowed=[4,5];
-        checkboxes.forEach((cb,i)=>{if(!allowed.includes(i)){cb.disabled=true;cb.checked=false;}});
-    }
-
-    calcularTotalGeral();
+function validar(p){
+let c=[];
+for(let i=0;i<6;i++){
+const cb=document.getElementById(p+i);
+cb.disabled=false;
+if(cb.checked)c.push(i);
+}
+if(c.includes(0))desabilitar(p,[0,1,5]);
+if(c.includes(2))desabilitar(p,[2,0,5]);
+if(c.includes(3))desabilitar(p,[3,5]);
+if(c.includes(4))desabilitar(p,[4,5]);
+calcular();
 }
 
-function calcularTotalGeral() {
-    let total=0;
-    ['desk','lap'].forEach(prefix=>{
-        const eq=document.getElementById(`check${prefix==='desk'?'Desktop':'Laptop'}`);
-        if(!eq.checked)return;
-        for(let i=0;i<NUM_SERVICOS;i++){
-            const cb=document.getElementById(`${prefix}${i}`);
-            const service=cb.closest('.service');
-            if(cb.checked&&!cb.disabled&&service){
-                total+=parseFloat(service.getAttribute('data-preco'));
-            }
-        }
-    });
-    document.getElementById('valorTotal').textContent=total.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function desabilitar(p,permitidos){
+for(let i=0;i<6;i++){
+const cb=document.getElementById(p+i);
+if(!permitidos.includes(i)){
+cb.checked=false;
+cb.disabled=true;
+}
+}
+}
+
+function calcular(){
+let total=0;
+['desk','lap'].forEach(p=>{
+for(let i=0;i<6;i++){
+const cb=document.getElementById(p+i);
+if(cb&&cb.checked&&!cb.disabled){
+total+=Number(cb.closest('.service').dataset.preco);
+}
+}
+});
+document.getElementById('total').innerText=
+total.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 }
 
 function enviar(){
-    const nome=document.getElementById('nome').value.trim();
-    const desktopChecked=document.getElementById('checkDesktop').checked;
-    const laptopChecked=document.getElementById('checkLaptop').checked;
-    if(!nome)return alert('Por favor, preencha seu Nome.');
-    if(!desktopChecked&&!laptopChecked)return alert('Selecione pelo menos um equipamento.');
+const nome=document.getElementById('nome').value.trim();
+if(!nome)return alert('Informe seu nome');
 
-    let total=0;
-    const resumoServicos=[];
+let resumo=[];
+let total=0;
 
-    const processar=(prefix,titulo)=>{
-        const servicos=[];
-        for(let i=0;i<NUM_SERVICOS;i++){
-            const cb=document.getElementById(`${prefix}${i}`);
-            const service=cb.closest('.service');
-            if(cb.checked&&!cb.disabled&&service){
-                const preco=parseFloat(service.getAttribute('data-preco'));
-                total+=preco;
-                servicos.push(`• ${nomesServicos[i]} (R$ ${preco.toFixed(2).replace('.',',')})`);
-            }
-        }
-        if(servicos.length>0)resumoServicos.push(`*${titulo}:*\n${servicos.join('\n')}`);
-        return servicos.length;
-    };
-
-    const qtdDesk=desktopChecked?processar('desk','PC de Mesa (Desktop)'):0;
-    const qtdLap=laptopChecked?processar('lap','Laptop (Notebook)'):0;
-
-    if(desktopChecked && qtdDesk===0) return alert('Selecione ao menos um serviço para o PC de Mesa.');
-    if(laptopChecked && qtdLap===0) return alert('Selecione ao menos um serviço para o Laptop.');
-    if(total===0) return alert('Selecione pelo menos um serviço.');
-
-    const msg=`🤝 Olá! Me chamo *${nome}* e gostaria de fazer uma solicitação.\n\n🧾 *Serviços Selecionados:*\n\n${resumoServicos.join('\n\n')}\n\n💰 *TOTAL ESTIMADO:* R$ ${total.toFixed(2).replace('.',',')}`;
-    const numero='19993444657';
-    const url=`https://wa.me/55${numero}?text=${encodeURIComponent(msg)}`;
-    window.open(url,'_blank');
+['desk','lap'].forEach(p=>{
+let itens=[];
+for(let i=0;i<6;i++){
+const cb=document.getElementById(p+i);
+if(cb&&cb.checked&&!cb.disabled){
+const preco=cb.closest('.service').dataset.preco;
+total+=Number(preco);
+itens.push(`• ${nomes[i]} (R$ ${preco})`);
 }
+}
+if(itens.length)
+resumo.push(`*${p=='desk'?'Desktop':'Laptop'}:*\n${itens.join('\n')}`);
+});
 
-window.onload=calcularTotalGeral;
+if(!resumo.length)return alert('Selecione ao menos um serviço.');
+
+const msg=`Olá! Meu nome é *${nome}*.\n\n🧾 *Serviços Selecionados:*\n\n${resumo.join('\n\n')}\n\n💰 *Total estimado:* R$ ${total}`;
+window.open(`https://wa.me/5519993444657?text=${encodeURIComponent(msg)}`);
+}
 </script>
 </body>
 </html>
