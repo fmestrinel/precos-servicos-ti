@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tabela de Serviços de Informática</title>
+<title>FM Tech - Serviços de Informática</title>
+
+<link rel="icon" href="logo_fm_tech.png" type="image/png">
 
 <style>
 * {
@@ -12,7 +14,7 @@
 }
 
 body {
-    background: #000000;
+    background: #000;
     margin: 0;
     padding: 0;
     display: flex;
@@ -22,46 +24,44 @@ body {
 }
 
 .container {
-    background: #ffffff;
+    background: #fff;
     padding: 20px;
     margin-top: 30px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    border-radius: 14px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
     max-width: 420px;
     width: 100%;
+    text-align: center;
 }
 
 /* LOGO */
 .logo {
-    display: block;
-    margin: 0 auto 6px auto;
-    max-width: 200px; /* ideal para WhatsApp */
+    max-width: 220px;
     width: 100%;
+    margin: 0 auto 8px;
+    display: block;
 }
 
 /* SLOGAN */
 .slogan {
-    text-align: center;
-    font-size: 0.85em;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 18px;
-    letter-spacing: 0.5px;
+    font-size: 0.95em;
+    color: #444;
+    margin-bottom: 15px;
+    font-weight: 500;
 }
 
+/* TÍTULO */
 h2 {
-    text-align: center;
-    color: #333;
+    color: #222;
     margin-bottom: 10px;
-    font-weight: 700;
 }
 
+/* SERVIÇOS */
 .service {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    padding-left: 5px;
 }
 
 .service label {
@@ -77,12 +77,11 @@ h2 {
     transform: scale(1.1);
 }
 
-.service .preco {
+.preco {
     font-weight: 600;
     color: #007bff;
-    text-align: right;
     width: 80px;
-    flex-shrink: 0;
+    text-align: right;
 }
 
 .service input:disabled + span {
@@ -94,45 +93,26 @@ h2 {
     text-decoration: line-through;
 }
 
+/* EQUIPAMENTOS */
 .equipment-section {
     border: 1px solid #ddd;
     padding: 15px;
     margin-top: 15px;
     border-radius: 8px;
     background-color: #f9f9f9;
+    text-align: left;
 }
 
 .equipment-section h3 {
     margin-top: 0;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 5px;
     color: #007bff;
 }
 
-.form {
-    margin-top: 25px;
-    border-top: 1px solid #ddd;
-    padding-top: 15px;
-}
-
-.form label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.form input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
+/* TOTAL */
 .total-box {
     border: 2px solid #007bff;
     padding: 10px;
-    margin-bottom: 20px;
+    margin: 20px 0;
     border-radius: 6px;
     background-color: #e9f5ff;
     display: flex;
@@ -140,11 +120,28 @@ h2 {
     font-weight: 700;
 }
 
+/* FORM */
+.form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* BOTÃO */
 button {
     width: 100%;
     background-color: #25D366;
     border: none;
-    color: white;
+    color: #fff;
     padding: 12px;
     font-size: 16px;
     border-radius: 6px;
@@ -165,28 +162,54 @@ button:hover {
     <img src="logo_fm_tech.png" alt="FM Tech - Suporte em TI" class="logo">
 
     <!-- SLOGAN -->
-    <div class="slogan">
-        Formatação • Suporte • Manutenção
-    </div>
+    <div class="slogan">Formatação • Suporte • Manutenção</div>
 
     <h2>Serviços de Informática 💻</h2>
 
-    <label style="font-weight:bold; margin-bottom:15px; display:block;">
-        Quais equipamentos precisam de serviço?
-    </label>
+    <strong>Quais equipamentos precisam de serviço?</strong>
 
-    <div class="service" style="padding-left:0;">
-        <label><input type="checkbox" id="checkDesktop" onchange="toggleEquipmentSection('desktop')">
-        <span>PC de Mesa (Desktop)</span></label>
+    <div class="service">
+        <label>
+            <input type="checkbox" id="checkDesktop" onchange="toggleEquipmentSection('desktop')">
+            <span>PC de Mesa (Desktop)</span>
+        </label>
     </div>
 
-    <div class="service" style="padding-left:0;">
-        <label><input type="checkbox" id="checkLaptop" onchange="toggleEquipmentSection('laptop')">
-        <span>Laptop (Notebook)</span></label>
+    <div class="service">
+        <label>
+            <input type="checkbox" id="checkLaptop" onchange="toggleEquipmentSection('laptop')">
+            <span>Laptop (Notebook)</span>
+        </label>
     </div>
 
-    <div id="services-container">
-        <!-- SEÇÕES PERMANECEM IGUAIS ÀS SUAS -->
+    <!-- DESKTOP -->
+    <div id="desktop-section" class="equipment-section" style="display:none;">
+        <h3>PC de Mesa 🖥️</h3>
+
+        <div class="service" data-preco="50">
+            <label><input type="checkbox" class="desk"> <span>Limpeza</span></label>
+            <span class="preco">R$ 50,00</span>
+        </div>
+
+        <div class="service" data-preco="70">
+            <label><input type="checkbox" class="desk"> <span>Formatação</span></label>
+            <span class="preco">R$ 70,00</span>
+        </div>
+    </div>
+
+    <!-- LAPTOP -->
+    <div id="laptop-section" class="equipment-section" style="display:none;">
+        <h3>Laptop 💻</h3>
+
+        <div class="service" data-preco="60">
+            <label><input type="checkbox" class="lap"> <span>Limpeza</span></label>
+            <span class="preco">R$ 60,00</span>
+        </div>
+
+        <div class="service" data-preco="80">
+            <label><input type="checkbox" class="lap"> <span>Formatação</span></label>
+            <span class="preco">R$ 80,00</span>
+        </div>
     </div>
 
     <div class="form">
@@ -195,7 +218,7 @@ button:hover {
             <span id="valorTotal">R$ 0,00</span>
         </div>
 
-        <label for="nome">Nome:</label>
+        <label>Nome:</label>
         <input type="text" id="nome" placeholder="Seu nome">
 
         <button onclick="enviar()">SOLICITAR SERVIÇO</button>
@@ -204,7 +227,48 @@ button:hover {
 </div>
 
 <script>
-/* SEU JAVASCRIPT PERMANECE IGUAL */
+function toggleEquipmentSection(type) {
+    const check = document.getElementById(
+        type === 'desktop' ? 'checkDesktop' : 'checkLaptop'
+    );
+    const section = document.getElementById(type + '-section');
+
+    section.style.display = check.checked ? 'block' : 'none';
+
+    if (!check.checked) {
+        section.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+    }
+    calcularTotal();
+}
+
+function calcularTotal() {
+    let total = 0;
+    document.querySelectorAll('.service input[type="checkbox"]:checked').forEach(cb => {
+        const service = cb.closest('.service');
+        if (service && service.dataset.preco) {
+            total += parseFloat(service.dataset.preco);
+        }
+    });
+
+    document.getElementById('valorTotal').textContent =
+        total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+document.addEventListener('change', calcularTotal);
+
+function enviar() {
+    const nome = document.getElementById('nome').value.trim();
+    if (!nome) {
+        alert('Informe seu nome.');
+        return;
+    }
+
+    const total = document.getElementById('valorTotal').textContent;
+    const msg = `Olá! Me chamo ${nome} e gostaria de solicitar um serviço.\nTotal estimado: ${total}`;
+    const numero = '5519993444657';
+
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank');
+}
 </script>
 
 </body>
