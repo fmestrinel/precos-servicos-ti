@@ -27,13 +27,12 @@
             --text-total: #000000;
         }
 
-        /* Cores para o Modo Escuro - Ajustadas para o fundo do seu logo (#282828) */
         body.dark-mode {
-            --bg-body: #282828;      /* Igual ao fundo da sua imagem logo_fm_tech_escuro.png */
-            --bg-container: #282828; /* Igual ao fundo da sua imagem logo_fm_tech_escuro.png */
+            --bg-body: #282828;
+            --bg-container: #282828;
             --text-main: #ffffff;
             --text-slogan: #bbbbbb;
-            --bg-section: #333333;   /* Um pouco mais claro para destacar as seções */
+            --bg-section: #333333;
             --border-color: #444444;
             --input-bg: #3d3d3d;
             --bg-total: #1a3a5a;
@@ -102,28 +101,38 @@
             margin-bottom:10px;
         }
 
+        /* --- CORREÇÃO DE LAYOUT AQUI --- */
         .service{
             display:flex;
             justify-content:space-between;
             align-items:center;
             margin-bottom:10px;
+            flex-wrap: nowrap; /* Garante linha única */
         }
 
         .service label{
             display:flex;
             align-items:center;
             cursor:pointer;
+            white-space: nowrap; /* Texto não quebra linha */
+            flex: 1; 
+            overflow: hidden; /* Evita que o texto estoure o container */
         }
 
         .service input{
             margin-right:8px;
             transform:scale(1.1);
+            flex-shrink: 0; /* Checkbox não encolhe */
         }
 
         .preco{
             font-weight:600;
             color:#007bff;
+            white-space: nowrap; /* R$ e valor sempre juntos */
+            flex-shrink: 0;      /* Preço não encolhe */
+            margin-left: 5px;
         }
+        /* ------------------------------- */
 
         .equipment-section{
             border:1px solid var(--border-color);
@@ -177,6 +186,12 @@
 
         .btn-whatsapp:hover{background:#128C7E;}
         input:disabled+span{color:#888;}
+
+        /* Ajuste para telas pequenas ou fontes grandes */
+        @media (max-width: 400px) {
+            .container { padding: 15px; }
+            .service label span, .preco { font-size: 14px; }
+        }
     </style>
 </head>
 
@@ -205,7 +220,7 @@
 <div class="service" data-preco="70"><label><input type="checkbox" id="desk1" onchange="validar('desk')"><span>Formatação</span></label><span class="preco">R$ 70</span></div>
 <div class="service" data-preco="100"><label><input type="checkbox" id="desk2" onchange="validar('desk')"><span>Formatação + Backup</span></label><span class="preco">R$ 100</span></div>
 <div class="service" data-preco="100"><label><input type="checkbox" id="desk3" onchange="validar('desk')"><span>Formatação + Limpeza</span></label><span class="preco">R$ 100</span></div>
-<div class="service" data-preco="130"><label><input type="checkbox" id="desk4" onchange="validar('desk')"><span>Formatação + Backup + Limpeza</span></label><span class="preco">R$ 130</span></div>
+<div class="service" data-preco="130"><label><input type="checkbox" id="desk4" onchange="validar('desk')"><span>Format. + Bkp + Limp</span></label><span class="preco">R$ 130</span></div>
 <div class="service" data-preco="40"><label><input type="checkbox" id="desk5" onchange="validar('desk')"><span>Instalação de Programas</span></label><span class="preco">R$ 40</span></div>
 </div>
 
@@ -215,7 +230,7 @@
 <div class="service" data-preco="70"><label><input type="checkbox" id="lap1" onchange="validar('lap')"><span>Formatação</span></label><span class="preco">R$ 70</span></div>
 <div class="service" data-preco="100"><label><input type="checkbox" id="lap2" onchange="validar('lap')"><span>Formatação + Backup</span></label><span class="preco">R$ 100</span></div>
 <div class="service" data-preco="100"><label><input type="checkbox" id="lap3" onchange="validar('lap')"><span>Formatação + Limpeza</span></label><span class="preco">R$ 100</span></div>
-<div class="service" data-preco="130"><label><input type="checkbox" id="lap4" onchange="validar('lap')"><span>Formatação + Backup + Limpeza</span></label><span class="preco canvas-130">R$ 130</span></div>
+<div class="service" data-preco="130"><label><input type="checkbox" id="lap4" onchange="validar('lap')"><span>Format. + Bkp + Limp</span></label><span class="preco canvas-130">R$ 130</span></div>
 <div class="service" data-preco="40"><label><input type="checkbox" id="lap5" onchange="validar('lap')"><span>Instalação de Programas</span></label><span class="preco">R$ 40</span></div>
 </div>
 
